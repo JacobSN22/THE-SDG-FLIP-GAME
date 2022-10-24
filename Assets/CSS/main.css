@@ -4,7 +4,7 @@
   gap: 3em;
   margin: 2em 20em;
 }
-#gameboard div {
+#gameboard .back {
   background-image: url(/Assets/Images/globe-eurafrica.svg);
   background-repeat: no-repeat;
   background-position: center;

@@ -15,9 +15,8 @@ cardList.sort(() => Math.random() - 0.5);
 for(let card of cardList) {
     let div = document.createElement('div')
     div.innerText = card.goal
-    div.classList.add('still')
+    div.classList.add('back')
     gameboard.prepend(div)
 }
-
 
 console.log(cardList);
