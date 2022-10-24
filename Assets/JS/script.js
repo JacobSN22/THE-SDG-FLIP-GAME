@@ -4,7 +4,7 @@ const gameboard = document.getElementById('gameboard')
 let cardList = GoalModel()
 
 //Beslutter hvor mange kort der skal være
-const numCards = 5;
+const numCards = 10;
 
 
 cardList.sort(()=> Math.random() - 0.5); 
@@ -15,5 +15,9 @@ cardList.sort(() => Math.random() - 0.5);
 for(let card of cardList) {
     let div = document.createElement('div')
     div.innerText = card.goal
+    div.classList.add('still')
     gameboard.prepend(div)
 }
+
+
+console.log(cardList);
