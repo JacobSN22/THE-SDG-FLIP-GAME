@@ -1,1 +1,13 @@
-/*# sourceMappingURL=main.css.map */
+#gameboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 1em;
+  margin: 2em 15em;
+}
+#gameboard div {
+  background-image: url(/Assets/Images/globe-eurafrica.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 3em;
+  text-align: center;
+}/*# sourceMappingURL=main.css.map */
