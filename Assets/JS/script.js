@@ -7,7 +7,7 @@ let cardList = GoalModel()
 const numCards = 10;
 
 
-cardList.sort(()=> Math.random() - 0.5); 
+cardList.sort(() => Math.random() - 0.5); 
 cardList = cardList.slice(0, numCards);
 cardList = cardList.concat(cardList);
 cardList.sort(() => Math.random() - 0.5);
@@ -18,5 +18,10 @@ for(let card of cardList) {
     div.classList.add('back')
     gameboard.prepend(div)
 }
+
+
+
+
+
 
 console.log(cardList);
