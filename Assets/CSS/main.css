@@ -22,7 +22,7 @@ section {
 }
 
 h1 {
-  background: linear-gradient(to bottom, #7384d3, #00f1c5);
+  background-color: #7384d3;
   border-radius: 1em;
   margin: 1em;
   padding: 0.3em;
