@@ -92,7 +92,8 @@ const checkCards = (e) => {
     }
     //win
     if(toggleCard.length === 16) {
-        restart("You won!")
+        setTimeout(() => restart("You won!"), 1500)
+        
     }
 }
 
