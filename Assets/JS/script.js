@@ -34,7 +34,7 @@ const randomize = () => {
 };
 
 
-
+//Generate cards
 const cardGenerator = () => {
     const cardData = randomize();
     //html
@@ -45,10 +45,10 @@ const cardGenerator = () => {
     card.classList = "card";
     face.classList = "face";
     back.classList = "back";
-
+    //Attach the info to the cards
     face.src = item.imgSrc;
     card.setAttribute("name", item.name)
-
+    //Attach the cards to the section
     section.appendChild(card);
     card.appendChild(face);
     card.appendChild(back)
@@ -59,14 +59,14 @@ const cardGenerator = () => {
     });
     });
 };
-
+    //Check cards
 const checkCards = (e) => {
     const clickedCard = e.target;
     clickedCard.classList.add("flipped"); 
     const flippedCards = document.querySelectorAll(".flipped");
     const toggleCard = document.querySelectorAll(".toggleCard")
     console.log(flippedCards);
-
+    //Validate
     if(flippedCards.length === 2) {
         if(
         flippedCards[0].getAttribute('name') === 
@@ -77,13 +77,11 @@ const checkCards = (e) => {
                 card.classList.remove("flipped");
                 card.style.pointerEvents = "none";
             })
-        } else {
+        } else { //Lose
             console.log("wrong");
             flippedCards.forEach((card) => {
                 card.classList.remove("flipped");
-                // card.classList.remove("toggleCard");
                 setTimeout(() => card.classList.remove("toggleCard"), 1000);
-                // setTimeout(() => card.classList.remove("flipped"), 1000);
             });
             playerLives--;
             playerLivesCounts.textContent = playerLives;
