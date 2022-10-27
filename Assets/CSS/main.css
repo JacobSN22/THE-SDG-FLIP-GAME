@@ -17,14 +17,15 @@ section {
   display: grid;
   grid-template-columns: repeat(4, 8rem);
   grid-template-rows: repeat(4, 8rem);
-  gap: 2rem;
-  perspective: 800px;
+  gap: 1.5rem;
+  width: 100%;
+  justify-content: center;
 }
 
 h1 {
   background-color: #7384d3;
   border-radius: 1em;
-  margin: 1em;
+  margin: 0.3em;
   padding: 0.3em;
   color: white;
 }
@@ -57,4 +58,35 @@ h1 {
 
 .face {
   transform: rotateY(-180deg);
+}
+
+#gameStart {
+  padding: 0.7em 2em;
+  border-radius: 1em;
+  margin-bottom: 1em;
+}
+
+#gameStart:hover {
+  cursor: pointer;
+}
+
+#timer {
+  margin-bottom: 0.5em;
+  color: white;
+  background-color: #7384d3;
+  border-radius: 0.7em;
+  padding: 0.3em 0.5em;
+}
+
+#click {
+  display: inline;
+  color: white;
+  background-color: #7384d3;
+  padding: 0.3em;
+  border-radius: 0.5em;
+  margin-bottom: 0.3em;
+}
+
+#count {
+  display: inline;
 }/*# sourceMappingURL=main.css.map */
