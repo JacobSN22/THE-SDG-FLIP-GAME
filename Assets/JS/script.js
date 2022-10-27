@@ -27,7 +27,7 @@ const getData = () => [
 const randomize = () => {
     var cardData = getData();
     cardData.sort(() => Math.random() - 0.5);
-    cardData = cardData.filter((cardData,idx) => idx < 8)
+    cardData = cardData.filter((cardData,numberOfCards) => numberOfCards < 8)
     cardData = cardData.concat(cardData)
     cardData.sort(() => Math.random() - 0.5);
     return cardData;
@@ -75,6 +75,17 @@ document.addEventListener('click', () => {
   setInterval(myTimer, 1000);
 }, { once: true });
 
+//Antal click----------------------------------------------------------------
+
+window.onload=function(){
+    const button = document.getElementById("section");
+    const p = document.getElementById("count");
+    function countUp() {
+        p.innerHTML++;
+    }
+    button.addEventListener("click",countUp);
+  }
+
     //Check cards----------------------------------------------------------------
 const checkCards = (e) => {
     const clickedCard = e.target;
@@ -104,13 +115,13 @@ const checkCards = (e) => {
             playerLives--;
             playerLivesCounts.textContent = playerLives;
             if(playerLives === 0) {
-                restart("HAHAHAHAHA YOU FUCKING SUCK");
+                restart("To Bad Loser");
             }
         }
     }
     //win----------------------------------------------------------------
     if(toggleCard.length === 16) {
-        setTimeout(() => restart("You won!"), 1500)
+        setTimeout(() => restart("You won! New game has started!"), 1500)
         
     }
 }
@@ -136,19 +147,6 @@ const restart = (text) => {
     setTimeout(() => window.alert(text), 1000)
     
 }
-
-//Antal click----------------------------------------------------------------
-
-window.onload=function(){
-    const button = document.getElementById("section");
-    const p = document.getElementById("count");
-    function increment() {
-        p.innerHTML++;
-    }
-    button.addEventListener("click",increment);
-  }
-
-
 
 
 
