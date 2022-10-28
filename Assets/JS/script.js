@@ -71,19 +71,20 @@ function myTimer() {
     min++;
   }
 }
+var timer
 document.addEventListener('click', () => {
-  setInterval(myTimer, 1000);
+    timer = setInterval(myTimer, 1000);  
 }, { once: true });
 
 //Antal click----------------------------------------------------------------
 
 window.onload=function(){
-    const button = document.getElementById("section");
+    const section = document.getElementById("section");
     const p = document.getElementById("count");
     function countUp() {
         p.innerHTML++;
     }
-    button.addEventListener("click",countUp);
+    section.addEventListener("click",countUp);
   }
 
     //Check cards----------------------------------------------------------------
@@ -122,7 +123,6 @@ const checkCards = (e) => {
     //win----------------------------------------------------------------
     if(toggleCard.length === 16) {
         setTimeout(() => restart("You won! New game has started!"), 1500)
-        
     }
 }
 
@@ -140,6 +140,9 @@ const restart = (text) => {
             faces[index].src = item.imgSrc;
             cards[index].setAttribute("name", item.name);
             section.style.pointerEvents = "all";
+            document.getElementById("timer").innerHTML = "Time: 0" + " Minutes  0" + " Seconds";
+            document.getElementById("count").innerHTML = "0";
+            clearInterval(timer)
         }, 1000)
     })
     playerLives = 8;
