@@ -61,26 +61,34 @@ const cardGenerator = () => {
 };
 
 //Timer----------------------------------------------------------------
-let min = 0;
-let sec = 0;
-function myTimer() {
-  document.getElementById("timer").innerHTML = "Time: " + min + " Minutes " + sec + " Seconds";
-  sec++;
-  if (sec >= 60) {
-    sec = 0;
-    min++;
-  }
+const timeboard = document.getElementById('timer');
+let miliseconds = '00';
+let seconds = '00';
+let minutes = '00';
+let timer;
+
+function setTimer() {
+    miliseconds++;
+    miliseconds = (miliseconds < 10 ? '0' : "") + miliseconds;
+
+    if(miliseconds > 99) {
+        seconds++;
+        seconds = (seconds < 10 ? '0' : "") + seconds;
+        miliseconds = '00';
+
+        if(seconds > 59) {
+            minutes++;
+            minutes = (minutes < 10 ? '0' : "") + minutes;
+            seconds = '00';
+        }
+    }
+    timeboard.innerText = `Time: ${minutes}:${seconds}:${miliseconds}`;
 }
-var timer
-document.addEventListener('click', () => {
-    timer = setInterval(myTimer, 1000);  
-}, { once: true });
 
 //Antal click----------------------------------------------------------------
-
+    let p = document.getElementById("count");
 window.onload=function(){
     const section = document.getElementById("section");
-    const p = document.getElementById("count");
     function countUp() {
         p.innerHTML++;
     }
@@ -94,6 +102,10 @@ const checkCards = (e) => {
     const flippedCards = document.querySelectorAll(".flipped");
     const toggleCard = document.querySelectorAll(".toggleCard")
     console.log(flippedCards);
+    if(!timer) {
+        setTimer();
+        timer = setInterval(setTimer, 10)
+    }
 
     
     //Validate----------------------------------------------------------------
@@ -111,18 +123,20 @@ const checkCards = (e) => {
             console.log("wrong");
             flippedCards.forEach((card) => {
                 card.classList.remove("flipped");
-                setTimeout(() => card.classList.remove("toggleCard"), 1000);
+                setTimeout(() => card.classList.remove("toggleCard"), 850);
             });
             playerLives--;
             playerLivesCounts.textContent = playerLives;
             if(playerLives === 0) {
-                restart("To Bad Loser");
+                setTimeout(() => restart("To Bad Loser you used up all your lives." + ` Your Time was ${minutes}:${seconds}:${miliseconds} and you used ${p.innerHTML} Clicks`), 1500);
+                clearInterval(timer);
             }
         }
     }
     //win----------------------------------------------------------------
     if(toggleCard.length === 16) {
-        setTimeout(() => restart("You won! New game has started!"), 1500)
+        setTimeout(() => restart(`You won with ${playerLivesCounts.innerHTML} lives remaning!` + ` Your Time was ${minutes}:${seconds}:${miliseconds} and you used ${p.innerHTML} Clicks` + ". A new game has started!"), 1500)
+        clearInterval(timer);
     }
 }
 
@@ -140,9 +154,13 @@ const restart = (text) => {
             faces[index].src = item.imgSrc;
             cards[index].setAttribute("name", item.name);
             section.style.pointerEvents = "all";
-            document.getElementById("timer").innerHTML = "Time: 0" + " Minutes  0" + " Seconds";
             document.getElementById("count").innerHTML = "0";
-            clearInterval(timer)
+            timer = null;
+            timeboard.innerText = `00:00:00`;
+            miliseconds = '00';
+            seconds = '00';
+            minutes = '00';
+
         }, 1000)
     })
     playerLives = 8;
